@@ -1,67 +1,83 @@
 .acordeon {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 1rem 0;
-    border: 1px solid #fff;
-    border-radius: 1rem;
-    transition: .25s;
+    margin: 1.5rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    background: var(--surface-color);
 }
 
-.acordeon.open,
-.acordeon:hover {
-    background-color: #55569E;
-    border-color: #55569E;
+.acordeon.open {
+    box-shadow: 0 8px 25px rgba(108, 99, 255, 0.15);
 }
 
 .acordeon .trigger {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    padding: 1rem 2rem;
-    background-color: transparent;
-    color: #fff;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background: var(--surface-color);
     border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.acordeon .trigger:hover {
+    background: rgba(108, 99, 255, 0.05);
+}
+
+.acordeon.open .trigger {
+    background: rgba(108, 99, 255, 0.1);
 }
 
 .acordeon .trigger h2 {
     margin: 0;
-    font-size: 1.5rem;
-    text-align: start;
+    font-size: 1.3rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
-.acordeon .trigger:hover {
-    cursor: pointer;
+.acordeon .trigger h2 i {
+    color: var(--primary-color);
+    width: 24px;
 }
 
-.acordeon .trigger::after {
-    content: '';
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: url('../img/icons/arrow-top.svg');
-    transition: .25s;
+.acordeon .trigger .arrow {
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
 }
 
-.acordeon.open .trigger::after {
+.acordeon.open .trigger .arrow {
     transform: rotate(180deg);
 }
 
 .acordeon .content {
+    max-height: 0;
     overflow: hidden;
-    height: 0;
-    opacity: 0;
-    transition: opacity .25s ease-in-out;
+    transition: max-height 0.5s ease, padding 0.3s ease;
 }
 
 .acordeon.open .content {
-    display: block;
-    padding: 0 1rem 1rem 2rem;
-    height: auto;
-    opacity: 1;
+    max-height: 2000px;
+    padding: 0 2rem 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .acordeon .trigger {
+        padding: 1.25rem 1.5rem;
+    }
+    
+    .acordeon .trigger h2 {
+        font-size: 1.1rem;
+    }
+    
+    .acordeon.open .content {
+        padding: 0 1.5rem 1.5rem;
+    }
 }

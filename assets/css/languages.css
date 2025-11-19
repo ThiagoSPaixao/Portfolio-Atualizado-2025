@@ -1,28 +1,45 @@
 .languages {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
 }
 
 .languages li {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    padding-right: 1rem;
-    font-weight: 700;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--surface-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.languages li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(108, 99, 255, 0.15);
 }
 
 .languages li::before {
-    content: "";
+    content: '';
     display: inline-block;
-    width: 1rem;
-    height: 1rem;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: url('../img/icons/check.svg');
-    margin-right: .5rem;
+    width: 12px;
+    height: 12px;
+    background: var(--gradient);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.language-level {
+    margin-left: auto;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 480px) {
+    .languages {
+        grid-template-columns: 1fr;
+    }
 }
